@@ -24,7 +24,10 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
               TextField(
                 autofocus: true,
                 focusNode: focusNode1, //关联focusNode1
-                decoration: InputDecoration(labelText: "input1"),
+                decoration: InputDecoration(
+                    labelText: "input1",
+                    hintText: "hintText1",
+                    hintStyle: TextStyle(color: Colors.grey, fontSize: 13.0)),
               ),
               TextField(
                 focusNode: focusNode2, //关联focusNode2

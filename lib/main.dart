@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'SwitchTest.dart';
 import 'package:flutter_demo/fieldinput/FieldInputTest.dart';
 import 'package:flutter_demo/fieldinput/FoucusInputTest.dart';
+import 'package:flutter_demo/fieldinput/FormInputTest.dart';
+import 'package:flutter_demo/column/ColumnRowTest.dart';
+import 'package:flutter_demo/column/FlexLayoutTestRoute.dart';
+import 'package:flutter_demo/WrapTestRoute.dart';
+import 'package:flutter_demo/Scaffold.dart';
+import 'package:flutter_demo/SingleChildScrollViewTestRoute.dart';
 import 'dart:developer';
 import 'dart:async';
 
@@ -105,22 +111,24 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
             FlatButton(
-              child: Text("open new route"),
-              textColor: Colors.blue,
+              child: Text("open Scafford Text"),
+              textColor: Colors.blueGrey,
               onPressed: () {
                 Navigator.push(context,
                     new MaterialPageRoute(builder: (context) {
-                  return new ParentWidget();
+                  return new ScaffoldRoute();
                 }));
               },
+            ),
+            RaisedButton(
+              child: Text("Scroll View"),
+              onPressed: () => {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) {
+                      return new SingleChildScrollViewTestRoute();
+                    }))
+                  },
             ),
             FlatButton(
               child: Text("open test"),
@@ -160,6 +168,54 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(context,
                         new MaterialPageRoute(builder: (context) {
                       return new FocusTestRoute();
+                    }))
+                  },
+            ),
+            RaisedButton(
+              child: Text(
+                "Form Test",
+                style: TextStyle(color: Colors.amber),
+              ),
+              onPressed: () => {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) {
+                      return new FormTestRoute();
+                    }))
+                  },
+            ),
+            RaisedButton(
+              child: Text(
+                "Column Test",
+                style: TextStyle(color: Colors.indigo),
+              ),
+              onPressed: () => {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) {
+                      return new ColumnRoute();
+                    }))
+                  },
+            ),
+            RaisedButton(
+              child: Text(
+                "Flex Test",
+                style: TextStyle(color: Colors.indigo),
+              ),
+              onPressed: () => {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) {
+                      return new FlexLayoutTestRoute();
+                    }))
+                  },
+            ),
+            RaisedButton(
+              child: Text(
+                "Wrap Test",
+                style: TextStyle(color: Colors.amber),
+              ),
+              onPressed: () => {
+                    Navigator.push(context,
+                        new MaterialPageRoute(builder: (context) {
+                      return new WrapTestRoute();
                     }))
                   },
             ),
