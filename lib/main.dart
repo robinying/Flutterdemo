@@ -12,6 +12,8 @@ import 'package:flutter_demo/ListViewRoute.dart';
 import 'package:flutter_demo/WillPopScopeTestRoute.dart';
 import 'package:flutter_demo/PointerListener.dart';
 import 'package:flutter_demo/DragRoute.dart';
+import 'package:flutter_demo/NotificationRoute.dart';
+import 'package:flutter_demo/ScaleAnimationRoute.dart';
 import 'dart:developer';
 import 'dart:async';
 
@@ -271,6 +273,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(context,
                       new MaterialPageRoute(builder: (context) {
                         return new DragRoute();
+                      }))
+                  },
+                ),
+                RaisedButton(
+                  child: Text(
+                    "Notification ",
+                    style: TextStyle(color: Colors.amber),
+                  ),
+                  onPressed: () => {
+                  Navigator.push(context,
+                      new MaterialPageRoute(builder: (context) {
+                        return new NotificationRoute();
+                      }))
+                  },
+                ),
+                RaisedButton(
+                  child: Text(
+                    "Animation Scale ",
+                    style: TextStyle(color: Colors.amber),
+                  ),
+                  onPressed: () => {
+                  Navigator.push(context,
+                      new MaterialPageRoute(builder: (context) {
+                        return new ScaleAnimationRoute();
                       }))
                   },
                 ),
