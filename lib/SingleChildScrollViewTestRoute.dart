@@ -17,7 +17,7 @@ class SingleChildScrollViewTestRoute extends StatelessWidget {
                   //每一个字母都用一个Text显示,字体为原来的两倍
                   .map((c) => Text(
                         c,
-                        textScaleFactor: 2.0,
+                        textScaleFactor: 1.5,
                       ))
                   .toList(),
             ),
