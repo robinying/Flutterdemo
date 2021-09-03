@@ -6,6 +6,12 @@ import 'package:flutter_demo/switch_check.dart';
 import 'package:flutter_demo/form.dart';
 import 'package:flutter_demo/flex_test.dart';
 import 'package:flutter_demo/list_item.dart';
+import 'package:flutter_demo/wrap_flow.dart';
+import 'package:flutter_demo/stack.dart';
+import 'package:flutter_demo/box.dart';
+import 'package:flutter_demo/transform.dart';
+import 'package:flutter_demo/news_demo.dart';
+import 'package:flutter_demo/shop.dart';
 
 void main() => runApp(new MyApp());
 
@@ -20,6 +26,11 @@ class MyApp extends StatelessWidget {
         "form": (context) => FormTestRoute(),
         "flex_test": (context) => FlexTestDemo(),
         "list_test": (context) => RandomWord(),
+        "wrap_flow": (context) => WrapFlowWidget(),
+        "stack_demo": (context) => StackDemoWidget(),
+        "box_demo": (context) => BoxDemoWidget(),
+        "transform_demo": (context) => TransformDemo(),
+        "news_demo": (context) => NewsDemoWidget(),
       },
     );
   }
@@ -75,37 +86,45 @@ class HomeWidgetState extends State<HomeWidget> {
                       Navigator.pushNamed(context, "flex_test");
                     },
                     icon: Icon(Icons.airline_seat_flat)),
-                IconButton(
+                ElevatedButton(
                   onPressed: () {
-                    //print(_controller.text);
                     Navigator.pushNamed(context, "form");
                   },
-                  icon: Icon(Icons.access_alarm),
+                  child: Text(
+                    "form",
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  ),
                 ),
-                // RaisedButton.icon(
-                //   icon: Icon(Icons.send),
-                //   label: Text("发送"),
-                //   onPressed: () {},
-                // ),
-                FlatButton(
-                  color: Colors.blue,
-                  highlightColor: Colors.yellow[700],
-                  colorBrightness: Brightness.dark,
-                  splashColor: Colors.grey,
-                  child: Text("Submit"),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
-                  onPressed: () {},
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) {
+                      return ShoppingList(
+                          products: <Product>[ new Product(name: 'Eggs'),
+                            new Product(name: 'Flour'),
+                            new Product(name: 'Chocolate chips'),
+                          ]);
+                    }));
+                  },
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.green)),
+                  child: Text(
+                    "Shop",
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  ),
                 ),
                 MaterialButton(
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return new NewRoute(
-                          title: "new Router111",
-                        );
-                      }));
+                            return new NewRoute(
+                              title: "new Router111",
+                            );
+                          }));
                     },
+                    color: Colors.amber[700],
+                    colorBrightness: Brightness.dark,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
                     child: Text("New Router")),
               ],
             ),
@@ -117,7 +136,49 @@ class HomeWidgetState extends State<HomeWidget> {
                   strokeWidth: 6.0,
                   backgroundColor: Colors.grey[200],
                   valueColor: AlwaysStoppedAnimation(Colors.blue),
-                )
+                ),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "wrap_flow");
+                    },
+                    icon: Icon(Icons.print)),
+                MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "stack_demo");
+                    },
+                    color: Colors.green[700],
+                    colorBrightness: Brightness.dark,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text("Stack")),
+                MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "box_demo");
+                    },
+                    color: Colors.limeAccent[700],
+                    colorBrightness: Brightness.dark,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text("Box")),
+                MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "transform_demo");
+                    },
+                    color: Colors.blue[300],
+                    colorBrightness: Brightness.dark,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text("Transform")),
+                MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "news_demo");
+                    },
+                    color: Colors.blue[300],
+                    colorBrightness: Brightness.dark,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text("News Demo")
+                ),
               ],
             ),
           ],
