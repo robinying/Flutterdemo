@@ -60,11 +60,10 @@ class _ShoppingListState extends State<ShoppingList> {
 
 class ShoppingListItem extends StatelessWidget {
   ShoppingListItem(
-      {required Product product,
+      {required this.product,
       required this.inCart,
       required this.onCartChanged})
-      : product = product,
-        super(key: new ObjectKey(product));
+      : super(key: new ObjectKey(product));
 
   final Product product;
   final bool inCart;
