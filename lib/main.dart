@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'package:flutter_demo/new_route.dart';
-import 'package:flutter_demo/test_page.dart';
-import 'package:flutter_demo/switch_check.dart';
-import 'package:flutter_demo/form.dart';
-import 'package:flutter_demo/flex_test.dart';
-import 'package:flutter_demo/list_item.dart';
-import 'package:flutter_demo/wrap_flow.dart';
-import 'package:flutter_demo/stack.dart';
-import 'package:flutter_demo/box.dart';
-import 'package:flutter_demo/transform.dart';
-import 'package:flutter_demo/news_demo.dart';
-import 'package:flutter_demo/shop.dart';
-import 'package:flutter_demo/single_scroll.dart';
-import 'package:flutter_demo/get_list.dart';
-import 'package:flutter_demo/grid_demo.dart';
-import 'package:flutter_demo/custom_sliver.dart';
-import 'network.dart';
-import 'listen.dart';
+import 'package:flutter_demo/ui/demo/new_route.dart';
+import 'package:flutter_demo/ui/demo/test_page.dart';
+import 'package:flutter_demo/ui/demo/switch_check.dart';
+import 'package:flutter_demo/ui/demo/form.dart';
+import 'package:flutter_demo/ui/demo/flex_test.dart';
+import 'package:flutter_demo/ui/demo/list_item.dart';
+import 'package:flutter_demo/ui/demo/wrap_flow.dart';
+import 'package:flutter_demo/ui/demo/stack.dart';
+import 'package:flutter_demo/ui/demo/box.dart';
+import 'package:flutter_demo/ui/demo/transform.dart';
+import 'package:flutter_demo/ui/demo/news_demo.dart';
+import 'package:flutter_demo/ui/demo/shop.dart';
+import 'package:flutter_demo/ui/demo/single_scroll.dart';
+import 'package:flutter_demo/ui/demo/get_list.dart';
+import 'package:flutter_demo/ui/demo/grid_demo.dart';
+import 'package:flutter_demo/ui/demo/custom_sliver.dart';
+import 'package:flutter_demo/ui/demo/network.dart';
+import 'package:flutter_demo/ui/demo/listen.dart';
+import 'package:flutter_demo/ui/dart/test_dart.dart';
 
 void main() => runApp(new MyApp());
 
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         "grid_demo": (context) => MaterialGrid(),
         "custom_sliver": (context) => CustomSliverDemo(),
         "network": (context) => NetWorkDemo(),
-        "pointer_listen":(context)=>PointerListener(),
+        "pointer_listen": (context) => PointerListener(),
+        "test_dart": (context) => TestDartDemo(),
       },
     );
   }
@@ -167,6 +169,15 @@ class HomeWidgetState extends State<HomeWidget> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
                     child: Text("Pointer Listen")),
+                MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, "test_dart");
+                    },
+                    color: Colors.indigo[700],
+                    colorBrightness: Brightness.dark,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: Text("Dart Usage")),
               ],
             ),
             Column(
@@ -256,7 +267,6 @@ class HomeWidgetState extends State<HomeWidget> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
                     child: Text("AlertDialog")),
-
                 MaterialButton(
                     onPressed: () {
                       changeLanguage();
