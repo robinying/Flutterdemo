@@ -19,6 +19,10 @@ import 'package:flutter_demo/ui/demo/custom_sliver.dart';
 import 'package:flutter_demo/ui/demo/network.dart';
 import 'package:flutter_demo/ui/demo/listen.dart';
 import 'package:flutter_demo/ui/dart/test_dart.dart';
+import 'package:flutter_demo/ui/animation/animation.dart';
+import 'package:flutter_demo/ui/path/path.dart';
+import 'package:flutter_demo/ui/demo/http_test.dart';
+import 'package:flutter_demo/ui/demo/future_builder.dart';
 
 void main() => runApp(new MyApp());
 
@@ -45,6 +49,10 @@ class MyApp extends StatelessWidget {
         "network": (context) => NetWorkDemo(),
         "pointer_listen": (context) => PointerListener(),
         "test_dart": (context) => TestDartDemo(),
+        "animation": (context) => AnimationDemo(),
+        "path_provider": (context) => PathDemo(),
+        "http_test":(context)=>HttpTestRoute(),
+        "future_builder":(context)=>FutureTestDemo(),
       },
     );
   }
@@ -75,209 +83,235 @@ class HomeWidgetState extends State<HomeWidget> {
       ),
       body: new Container(
         padding: EdgeInsets.all(10.0),
-        child: Row(
+        child: ListView(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 50.0,
-                  child: LinearProgressIndicator(
-                    backgroundColor: Colors.grey[200],
-                    valueColor: AlwaysStoppedAnimation(Colors.blue),
-                  ),
-                ),
+            Container(
+              width: 50.0,
+              child: LinearProgressIndicator(
+                backgroundColor: Colors.grey[200],
+                valueColor: AlwaysStoppedAnimation(Colors.blue),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "future_builder");
+              },
+              child: Text(
+                "Future_builder",
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "http_test");
+              },
+              child: Text(
+                "http test",
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
+            ),
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "list_test");
+                },
+                icon: Icon(Icons.person)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "data_list");
+              },
+              child: Text(
+                "Data list",
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
+            ),
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "flex_test");
+                },
+                icon: Icon(Icons.airline_seat_flat)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "scroll_demo");
+              },
+              child: Text(
+                "Scroll",
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "form");
+              },
+              child: Text(
+                "form",
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ShoppingList(products: <Product>[
+                    new Product(name: 'Eggs'),
+                    new Product(name: 'Flour'),
+                    new Product(name: 'Chocolate chips'),
+                  ]);
+                }));
+              },
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.green)),
+              child: Text(
+                "Shop",
+                style: TextStyle(color: Colors.white, fontSize: 18.0),
+              ),
+            ),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return new NewRoute(
+                      title: "new Router111",
+                    );
+                  }));
+                },
+                color: Colors.amber[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("New Router")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "pointer_listen");
+                },
+                color: Colors.indigo[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Pointer Listen")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "test_dart");
+                },
+                color: Colors.indigo[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Dart Usage")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "animation");
+                },
+                color: Colors.indigo[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Animation")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "path_provider");
+                },
+                color: Colors.indigo[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Path Provider")),
 
-                // SwitchAndCheckBoxTestRoute(),
-                IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "list_test");
-                    },
-                    icon: Icon(Icons.person)),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "data_list");
-                  },
-                  child: Text(
-                    "Data list",
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "flex_test");
-                    },
-                    icon: Icon(Icons.airline_seat_flat)),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "scroll_demo");
-                  },
-                  child: Text(
-                    "Scroll",
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "form");
-                  },
-                  child: Text(
-                    "form",
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return ShoppingList(products: <Product>[
-                        new Product(name: 'Eggs'),
-                        new Product(name: 'Flour'),
-                        new Product(name: 'Chocolate chips'),
-                      ]);
-                    }));
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green)),
-                  child: Text(
-                    "Shop",
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  ),
-                ),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return new NewRoute(
-                          title: "new Router111",
-                        );
-                      }));
-                    },
-                    color: Colors.amber[700],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("New Router")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "pointer_listen");
-                    },
-                    color: Colors.indigo[700],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Pointer Listen")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "test_dart");
-                    },
-                    color: Colors.indigo[700],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Dart Usage")),
-              ],
+            SizedBox(
+              width: 100.0,
+              height: 100.0,
+              child: CircularProgressIndicator(
+                strokeWidth: 6.0,
+                backgroundColor: Colors.grey[200],
+                valueColor: AlwaysStoppedAnimation(Colors.blue),
+              ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircularProgressIndicator(
-                  strokeWidth: 6.0,
-                  backgroundColor: Colors.grey[200],
-                  valueColor: AlwaysStoppedAnimation(Colors.blue),
-                ),
-                IconButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "wrap_flow");
-                    },
-                    icon: Icon(Icons.print)),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "stack_demo");
-                    },
-                    color: Colors.green[700],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Stack")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "box_demo");
-                    },
-                    color: Colors.limeAccent[700],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Box")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "transform_demo");
-                    },
-                    color: Colors.blue[300],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Transform")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "news_demo");
-                    },
-                    color: Colors.blue[300],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("News Demo")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "grid_demo");
-                    },
-                    color: Colors.blue[300],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Grid Demo")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "custom_sliver");
-                    },
-                    color: Colors.blue[300],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Custom sliver")),
-                MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, "network");
-                    },
-                    color: Colors.blue[300],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("Network")),
-                MaterialButton(
-                    onPressed: () {
-                      showDeleteConfirmDialog()
-                          .then((value) => print("value:" + value!.toString()));
-                    },
-                    color: Colors.blue[300],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("AlertDialog")),
-                MaterialButton(
-                    onPressed: () {
-                      changeLanguage();
-                    },
-                    color: Colors.blue[300],
-                    colorBrightness: Brightness.dark,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    child: Text("SimpleDialog")),
-              ],
-            ),
+
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "wrap_flow");
+                },
+                icon: Icon(Icons.print)),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "stack_demo");
+                },
+                color: Colors.green[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Stack")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "box_demo");
+                },
+                color: Colors.limeAccent[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Box")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "transform_demo");
+                },
+                color: Colors.blue[300],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Transform")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "news_demo");
+                },
+                color: Colors.blue[300],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("News Demo")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "grid_demo");
+                },
+                color: Colors.blue[300],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Grid Demo")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "custom_sliver");
+                },
+                color: Colors.blue[300],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Custom sliver")),
+            MaterialButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "network");
+                },
+                color: Colors.blue[300],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("Network")),
+            MaterialButton(
+                onPressed: () {
+                  showDeleteConfirmDialog()
+                      .then((value) => print("value:" + value!.toString()));
+                },
+                color: Colors.blue[300],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("AlertDialog")),
+            MaterialButton(
+                onPressed: () {
+                  changeLanguage();
+                },
+                color: Colors.blue[300],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                child: Text("SimpleDialog")),
           ],
         ),
       ),
