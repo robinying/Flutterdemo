@@ -37,6 +37,11 @@ class _TestDartDemoState extends State<TestDartDemo> {
   }
 
   void _map(){
+    var halogens = {'fluorine', 'chlorine', 'bromine', 'iodine', 'astatine'};
+    print(halogens.runtimeType);
+    Runes input = new Runes(
+        '\u2665  \u{1f605}  \u{1f60e}  \u{1f47b}  \u{1f596}  \u{1f44d}');
+    print(new String.fromCharCodes(input));
     var map6 = {for (var i = 0; i < 5; i++) "key$i": "value$i"};
     assert(map6.length == 5);
   }

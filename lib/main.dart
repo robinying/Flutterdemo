@@ -51,8 +51,8 @@ class MyApp extends StatelessWidget {
         "test_dart": (context) => TestDartDemo(),
         "animation": (context) => AnimationDemo(),
         "path_provider": (context) => PathDemo(),
-        "http_test":(context)=>HttpTestRoute(),
-        "future_builder":(context)=>FutureTestDemo(),
+        "http_test": (context) => HttpTestRoute(),
+        "future_builder": (context) => FutureTestDemo(),
       },
     );
   }
@@ -92,13 +92,17 @@ class HomeWidgetState extends State<HomeWidget> {
                 valueColor: AlwaysStoppedAnimation(Colors.blue),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "future_builder");
-              },
-              child: Text(
-                "Future_builder",
-                style: TextStyle(color: Colors.white, fontSize: 18.0),
+            InkWell(
+              splashColor: Colors.red,
+              highlightColor: Colors.green,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "future_builder");
+                },
+                child: Text(
+                  "Future_builder",
+                  style: TextStyle(color: Colors.white, fontSize: 18.0),
+                ),
               ),
             ),
             ElevatedButton(
@@ -214,7 +218,6 @@ class HomeWidgetState extends State<HomeWidget> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)),
                 child: Text("Path Provider")),
-
             SizedBox(
               width: 100.0,
               height: 100.0,
@@ -224,7 +227,6 @@ class HomeWidgetState extends State<HomeWidget> {
                 valueColor: AlwaysStoppedAnimation(Colors.blue),
               ),
             ),
-
             IconButton(
                 onPressed: () {
                   Navigator.pushNamed(context, "wrap_flow");
